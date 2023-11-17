@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defautHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>addInfoAssistenciais</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">addInfoAssistenciais</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <form [formGroup]="formGroup" (ngSubmit)="salvar()">
+    <ion-row>
+      <ion-col>
+        <ion-text class="ion-text-center" >
+          <h1>Nova Informação Assistencial</h1>
+        </ion-text>
+        <ion-item>
+          <ion-textarea placeholder="Adione uma nova informação Assistencial" [autoGrow]="true" value="infoAssistencial.info" formControlName="info"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col>
+
+        <ion-button type="submit" expand="block" color="primary" [disabled]="!formGroup.valid">Salvar</ion-button>
+        <ion-button expand="block" color="primary" routerLink="/info-assistenciais">Cancelar</ion-button>
+
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>

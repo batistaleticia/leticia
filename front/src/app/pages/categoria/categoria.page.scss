@@ -1,0 +1,52 @@
+
+button{
+    color: white;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+form button{
+    padding: 10px;
+    background-color: hwb(224 9% 19%);
+    border-radius: 30px;
+    text-decoration: none;
+}
+
+ion-content, ion-item{
+    --background: rgb(72, 53, 78);
+}
+ion-item{
+    text-align: center;
+}
+ion-list{
+    padding: 0;
+}
+
+h1{
+    color: white;
+    font-size: 60px;
+    font-family: "AmaticSC";
+}
+
+h2{
+    color: white;
+    // font-size: 40px;
+}
+
+*{
+    font-family: "Kalam";
+
+}
+
+ion-toolbar{
+    --background: #121212;
+    --color: white;
+}
+
+ion-label{
+    --color: white !important;
+}

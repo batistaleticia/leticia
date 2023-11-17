@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Helppy</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Helppy</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-text class="ion-text-center">
+    <h1>Login</h1>
+  </ion-text>
+
+  <form [formGroup]="formGroup" (ngSubmit)="login()">
+    <ion-item>
+      <ion-label position="fixed">Email:</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="fixed">Senha:</ion-label>
+      <ion-input type="password" formControlName="senha"></ion-input>
+    </ion-item>
+
+    <div id="buttons">
+      <ion-button type="submit" size="large" shape="round" expand="block" color="primary" [disabled]="!formGroup.valid">Login</ion-button>
+      <ion-button type="button" size="large" fill="outline" shape="round" expand="block" color="primary" routerLink="/cadastro">Nova Conta</ion-button>
+      <a id="open-modal" style="padding: 40px;">Esqueci minha senha</a>
+    </div>
+  </form>
+
+
+
+  <ion-modal trigger="open-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Recuperar Conta</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <form [formGroup]="formGroupModal" (ngSubmit)="recuperarConta()">
+          <ion-item>
+            <ion-input
+              label="Informe o email"
+              formControlName="email"
+              labelPlacement="stacked"
+              type="text"
+              placeholder="example@gmail.com"
+            ></ion-input>
+          </ion-item>
+  
+          <div id="buttons">
+            <ion-button type="submit" size="large" shape="round" expand="block" color="primary" [disabled]="!formGroupModal.valid">Confirmar</ion-button>
+            <ion-button type="button" size="large" fill="outline" shape="round" expand="block" color="primary" (click)="cancelModal()">Cancelar</ion-button>
+          </div>
+
+        </form>
+        
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

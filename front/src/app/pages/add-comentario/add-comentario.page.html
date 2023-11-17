@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defautHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Comentário</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Comentário</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <form [formGroup]="formGroup" (ngSubmit)="salvar()">
+    <ion-row *ngIf="categoriaId == 0">
+      <ion-col>
+        <ion-item>
+          <ion-label position="stacked">Categoria</ion-label>
+          <ion-select id="categoria" aria-label="Categoria" placeholder="Selecione uma categoria" formControlName="categoria">
+            <ion-select-option *ngFor="let categoria of categorias" value="{{categoria.id}}">{{categoria.nome}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-textarea label="Comentário:" placeholder="" formControlName="post"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col>
+
+        <ion-button type="submit" expand="block" color="primary" [disabled]="!formGroup.valid">Postar</ion-button>
+
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>

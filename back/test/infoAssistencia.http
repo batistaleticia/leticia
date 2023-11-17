@@ -1,0 +1,29 @@
+#GET
+GET http://localhost:8087/api/v1/infoassist/
+Content-Type: application/json
+###
+
+#POST
+POST http://localhost:8087/api/v1/infoassist
+Content-Type: application/json
+
+{
+    "info":"info 1"
+}
+###
+
+#PUT
+PUT http://localhost:8087/api/v1/infoassist
+Content-Type: application/json
+
+{
+    "id":1,
+    "info":"updateee info"
+}
+###
+
+
+
+#DELETE
+DELETE http://localhost:8087/api/v1/infoassist/1
+Content-Type: application/json

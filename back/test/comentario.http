@@ -1,0 +1,37 @@
+#GET
+GET http://localhost:8087/api/v1/comentario
+Content-Type: application/json
+###
+
+#POST
+POST http://localhost:8087/api/v1/comentario
+Content-Type: application/json
+
+{
+    "post":"Lorem ipsum dolor sit amet. Aut Quis numquam non praesentium vitae ab quia quis sit amet tempora id dolor voluptatem. Sed quibusdam inventore sit exercitationem dicta est omnis consequatur aut recusandae labore et itaque fuga id error quas.",
+    "data":"1693855877",
+    "quantidadeDenuncias": 2,
+    "idCategoria": 1,
+    "usuario_idUsuario": 1
+}
+###
+
+#PUT
+PUT http://localhost:8087/api/v1/comentario
+Content-Type: application/json
+
+{
+    "idComentario":1,
+    "post":"bbbbb ipsum dolor sit amet. Aut Quis numquam non praesentium vitae ab quia quis sit amet tempora id dolor voluptatem. Sed quibusdam inventore sit exercitationem dicta est omnis consequatur aut recusandae labore et itaque fuga id error quas.",
+    "data":"1693855877",
+    "quantidadeDenuncias": 2,
+    "idCategoria": 1,
+    "usuario_idUsuario": 1
+}
+###
+
+
+
+#DELETE
+DELETE http://localhost:8087/api/v1/comentario/17
+Content-Type: application/json

@@ -1,0 +1,30 @@
+ion-content, ion-item{
+    --background: rgb(72, 53, 78);
+}
+h1{
+    color: white;
+    font-size: 60px;
+    font-family: "AmaticSC";
+}
+
+ion-input{
+    color: white;
+}
+
+ion-button{
+    padding: 20px;
+}
+
+*{
+    font-family: "Kalam";
+    
+}
+
+ion-label{
+    color: white !important;
+}
+
+ion-toolbar{
+    --background: #121212;
+    --color: white;
+}

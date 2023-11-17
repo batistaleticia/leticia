@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defautHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Helppy</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Helppy</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-text class="ion-text-center">
+    <h1>{{ tituloPage }}</h1>
+  </ion-text>
+
+  <form [formGroup]="formGroup" (ngSubmit)="salvar()">
+    <ion-item>
+      <ion-label position="fixed">Nome:</ion-label>
+      <ion-input type="text" formControlName="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Email:</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="fixed">Senha:</ion-label>
+      <ion-input type="password" formControlName="senha"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Admin:</ion-label>
+      <ion-toggle
+        [checked]="true"
+        value="true"
+        formControlName="acesso"
+        [disabled]="usuario.idUsuario > 0? true : false"
+      ></ion-toggle
+      ><br /><br />
+    </ion-item>
+
+    <div id="buttons">
+      <ion-button
+        type="submit"
+        size="large"
+        shape="round"
+        expand="block"
+        color="primary"
+        [disabled]="!formGroup.valid"
+        >{{usuario.idUsuario > 0? "Salvar" : "Cadastrar"}}</ion-button
+      >
+      <ion-button type="button" size="large" fill="outline" shape="round" expand="block" color="primary" [routerLink]="usuario.idUsuario > 0? '/home' : '/login'">Voltar</ion-button>
+    </div>
+  </form>
+</ion-content>

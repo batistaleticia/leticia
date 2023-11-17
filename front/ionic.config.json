@@ -1,0 +1,7 @@
+{
+  "name": "helppy",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

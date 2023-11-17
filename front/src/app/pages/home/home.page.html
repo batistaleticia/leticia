@@ -1,0 +1,104 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button
+        id="click-trigger"
+        auto-hide="false"
+        menuToggle
+      ></ion-menu-button>
+      <!-- <ion-menu-button auto-hide="false" id="main-content" main></ion-menu-button> -->
+    </ion-buttons>
+    <ion-title>Helppy</ion-title>
+    <ion-buttons slot="primary">
+      <!-- <ion-button fill="solid">
+        Help
+        <ion-icon slot="end" name="help-circle"></ion-icon>
+      </ion-button> -->
+      <ion-button fill="outline" (click)="logout()"> Logout </ion-button>
+    </ion-buttons>
+
+    <ion-popover trigger="click-trigger" triggerAction="click">
+      <ng-template>
+        <ion-text id="sideMenuTitle" class="ion-text-center">
+          <h3>Categorias</h3>
+        </ion-text>
+        <button class="customButton" routerLink="/home">Geral</button>
+        <button class="customButton" *ngFor="let categoria of categoriaList" [routerLink]="['/home/', categoria.id]">{{categoria.nome}}</button>
+      </ng-template>
+    </ion-popover>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-title size="large">Helppy</ion-title>
+    <ion-toolbar>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-text class="ion-text-center" >
+    <h1>{{ tituloPage }}</h1>
+  </ion-text>
+
+  <ion-list>
+    <ion-item *ngFor="let comentario of comentarios">
+      <ion-card>
+        <ion-card-header>
+          <div style="display: flex; justify-content: space-between;">
+            <ion-text *ngIf="categoriaId == 0" class="textInfo">Categoria: {{getNomeCategoria(comentario.idCategoria)}}</ion-text>
+            <ion-text
+              *ngIf="comentario.quantidadeDenuncias > 0"
+              class="textInfo"
+            >Reportado por {{comentario.quantidadeDenuncias}} usuários</ion-text>
+          </div>
+
+          <!-- <ion-card-title
+            >{{getUsuarioNomeById(comentario.usuario_idUsuario)}}</ion-card-title
+            > -->
+          </ion-card-header>
+          <h2 style="margin: 0 19px; color: rgba(255, 255, 255, 0.5);">Anônimo</h2>
+        
+        <ion-card-content>
+          <ion-text style="font-size: medium">{{comentario.post}}</ion-text>
+          <!-- <span style="text-wrap: nowrap; font-size: 15px;">~ Anônimo</span> -->
+        </ion-card-content>
+
+        <ion-button
+          fill="outline"
+          shape="round"
+          size="small"
+          style="float: right;"
+          (click)="denunciarComentario(comentario.idComentario)"
+          >Reportar</ion-button
+        >
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/add-cliente" color="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
+
+  <ion-fab id="fabButton" slot="fixed" vertical="bottom" horizontal="start">
+    <ion-fab-button>
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button
+        [routerLink]="((categoriaId == 0)? '/add-comentario' : '/add-comentario/' + categoriaId)"
+      >
+        Comentário
+      </ion-fab-button>
+      <ion-fab-button routerLink="/categoria" *ngIf="usuario.acesso == 0">
+        Categorias
+      </ion-fab-button>
+      <ion-fab-button [routerLink]="['/cadastro', usuario.idUsuario]">
+        Perfil
+      </ion-fab-button>
+      <ion-fab-button routerLink="/info-assistenciais"> Ajuda
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

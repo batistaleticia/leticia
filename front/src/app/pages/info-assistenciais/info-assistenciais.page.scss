@@ -1,0 +1,48 @@
+
+ion-content, ion-item{
+  --background: rgb(72, 53, 78);
+}
+ion-item{
+  text-align: center;
+}
+ion-list{
+  padding: 0;
+}
+
+h1{
+  color: white;
+  font-size: 60px;
+  font-family: "AmaticSC";
+}
+
+h2{
+  color: white;
+  // font-size: 40px;
+}
+
+*{
+  font-family: "Kalam";
+
+}
+
+ion-toolbar{
+  --background: #121212;
+  --color: white;
+}
+
+ion-label{
+  --color: white !important;
+}
+
+
+ion-card{
+  width: 400px;
+  margin: 30px auto;
+  background-color: rgba(121, 121, 121, 0.459);
+  border-radius: 30px;
+  padding: 20px;
+
+  color: white;
+
+  font-family: "Kalam";
+}

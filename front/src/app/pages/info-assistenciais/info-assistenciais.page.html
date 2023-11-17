@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defautHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Informações Assistenciais</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Informações Assistenciais</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-text class="ion-text-center">
+    <h1>Informações Assistenciais</h1>
+  </ion-text>
+
+  <ion-list>
+    <ion-item *ngFor="let infoAssistencial of infoAssistenciais">
+      <ion-card>
+
+        <ion-card-content>
+          <ion-textarea style="font-size: medium" [autoGrow]="true" value="{{infoAssistencial.info}}"></ion-textarea>
+        </ion-card-content>
+
+        <ion-button  *ngIf="usuario.acesso == 0"
+          fill="outline"
+          shape="round"
+          size="small"
+          style="float: right"
+          color="primary"
+          [routerLink]="['/add-info-assistenciais', infoAssistencial.id]"
+          >Editar</ion-button
+        >
+        <ion-button  *ngIf="usuario.acesso == 0"
+          fill="outline"
+          shape="round"
+          size="small"
+          style="float: right"
+          color="danger"
+          (click)="excluir(infoAssistencial)"
+          >Excluir</ion-button
+        >
+      </ion-card>
+    </ion-item>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/add-info-assistenciais" color="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

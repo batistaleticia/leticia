@@ -1,0 +1,19 @@
+ion-content, ion-item{
+    --background: rgb(72, 53, 78);
+}
+
+ion-textarea, ion-select{
+    color: white;
+}
+
+*{
+    font-family: "Kalam";
+}
+
+ion-toolbar{
+    --background: #121212;
+    --color: white;
+}
+ion-label{
+    --color: white;
+}

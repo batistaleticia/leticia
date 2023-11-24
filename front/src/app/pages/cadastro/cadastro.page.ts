@@ -44,21 +44,27 @@ export class CadastroPage implements OnInit {
           this.formGroup.get('nome')?.setValue(this.usuario.nome);
           this.formGroup.get('email')?.setValue(this.usuario.email);
           this.formGroup.get('senha')?.setValue(this.usuario.senha);
-          this.formGroup.get('acesso')?.setValue(this.usuario.acesso === 0? true : false);
-
-
+          this.formGroup
+            .get('acesso')
+            ?.setValue(this.usuario.acesso === 0 ? true : false);
         } else {
           this.navController.navigateBack('/home');
         }
       });
     }
 
-
-
-
     this.formGroup = this.formBuilder.group({
       nome: [this.usuario.nome, Validators.compose([Validators.required])],
-      email: [this.usuario.email,Validators.compose([Validators.maxLength(70), Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'), Validators.required])],
+      email: [
+        this.usuario.email,
+        Validators.compose([
+          Validators.maxLength(70),
+          Validators.pattern(
+            '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
+          ),
+          Validators.required,
+        ]),
+      ],
       senha: [this.usuario.senha, Validators.compose([Validators.required])],
       acesso: ['', Validators.compose([])],
     });
@@ -73,24 +79,35 @@ export class CadastroPage implements OnInit {
     this.usuario.senha = this.formGroup.value.senha;
     this.usuario.acesso = this.formGroup.value.acesso === false ? 1 : 0;
 
-    this.usuarioService
-      .save(this.usuario)
-      .then((json: any) => {
-        let usuario = <Usuario>json;
-        if (usuario) {
-          this.exibirMensagem('Registro salvo com sucesso!!!');
-          if(usuario.idUsuario > 0){
-            this.navController.navigateBack('/home');
-          } else{
-            this.navController.navigateBack('/login');
-          }
-        } else {
-          this.exibirMensagem('Erro ao salvar o registro!');
-        }
-      })
-      .catch((erro: any) => {
-        this.exibirMensagem('Erro:' + erro['mensage']);
-      });
+    this.usuarioService.conferirEmail(this.usuario.email).then((json) => {
+      let usuario = <Usuario>json;
+      console.log(usuario);
+
+      if (usuario === null) {
+        this.usuarioService
+          .save(this.usuario)
+          .then((json: any) => {
+            let usuario = <Usuario>json;
+            if (usuario) {
+              this.exibirMensagem('Registro salvo com sucesso!!!');
+              if (usuario.idUsuario > 0) {
+                this.navController.navigateBack('/login');
+              } else {
+                this.navController.navigateBack('/login');
+              }
+            } else {
+              this.exibirMensagem('Erro ao salvar o registro!');
+            }
+          })
+          .catch((erro: any) => {
+            this.exibirMensagem('Erro:' + erro['mensage']);
+          });
+      } else {
+        this.exibirMensagem(
+          'Erro ao salvar o registro! O email já possui uma conta no sistema!'
+        );
+      }
+    });
 
     this.fecharLoader();
   }

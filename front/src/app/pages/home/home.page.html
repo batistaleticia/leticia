@@ -6,7 +6,8 @@
         auto-hide="false"
         menuToggle
       ></ion-menu-button>
-      <!-- <ion-menu-button auto-hide="false" id="main-content" main></ion-menu-button> -->
+
+
     </ion-buttons>
     <ion-title>Helppy</ion-title>
     <ion-buttons slot="primary">
@@ -17,8 +18,8 @@
       <ion-button fill="outline" (click)="logout()"> Logout </ion-button>
     </ion-buttons>
 
-    <ion-popover trigger="click-trigger" triggerAction="click">
-      <ng-template>
+    <ion-popover trigger="click-trigger" [dismissOnSelect]="true"> <!--triggerAction="click" -->
+      <ng-template> 
         <ion-text id="sideMenuTitle" class="ion-text-center">
           <h3>Categorias</h3>
         </ion-text>

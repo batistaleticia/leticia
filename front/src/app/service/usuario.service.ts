@@ -51,7 +51,7 @@ export class UsuarioService {
   }
 
   async conferirEmail(email: string) {
-    let urlAuxiliar = this.url + '/email/' + email + '/exists';
+    let urlAuxiliar = this.url + '/email/' + email;
     return await this.httpClient.get(urlAuxiliar).toPromise();
   }
 
@@ -74,19 +74,5 @@ export class UsuarioService {
     return usuario;
   }
   
-
-  
-  /**
-   *  Gutao
-   */
-  
-  // verificarUsuario(email: string, senha: string){
-  //   let usuario = JSON.parse(localStorage.getItem('usuario') || 'null').find((elem: Usuario) => elem.email === email && elem.senha === senha)
-  //   if (usuario != null) {
-  //     return usuario;  // ou true
-  //   } else{
-  //     return null;  // ou false
-  //   }
-  // }
 }
 

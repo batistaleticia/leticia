@@ -33,6 +33,8 @@ export class InfoAssistenciaisPage implements OnInit {
   
   async ionViewWillEnter() {
     this.carregarListagem();
+    console.log(this.infoAssistenciais);
+    
   }
 
   async carregarListagem() {

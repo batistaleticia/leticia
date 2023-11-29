@@ -32,7 +32,7 @@ public interface InfoAssistenciaisDao {
     
     @SqlQuery("select * " +
             " from infoassistenciais " +
-            " order by info;")
+            " order by id DESC;")
     List<InfoAssistenciais> getAll();
 
     

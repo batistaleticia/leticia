@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defautHref="/home"></ion-back-button>
+      <ion-icon name="arrow-back-outline" size='large' [routerLink]="(usuario.idUsuario > 0? '/home' : '/login')" style="padding: 15px; cursor: pointer;"></ion-icon>
     </ion-buttons>
     <ion-title>Helppy</ion-title>
   </ion-toolbar>
@@ -17,7 +17,7 @@
     <h1>{{ tituloPage }}</h1>
   </ion-text>
 
-  <form [formGroup]="formGroup" (ngSubmit)="salvar()">
+  <form [formGroup]="formGroup" (ngSubmit)="botaoSalvar()">
     <ion-item>
       <ion-label position="fixed">Nome:</ion-label>
       <ion-input type="text" formControlName="nome"></ion-input>
@@ -31,7 +31,7 @@
       <ion-label position="fixed">Senha:</ion-label>
       <ion-input type="password" formControlName="senha"></ion-input>
     </ion-item>
-    <ion-item>
+    <!-- <ion-item>
       <ion-label position="fixed">Admin:</ion-label>
       <ion-toggle
         [checked]="true"
@@ -40,7 +40,7 @@
         [disabled]="usuario.idUsuario > 0? true : false"
       ></ion-toggle
       ><br /><br />
-    </ion-item>
+    </ion-item> -->
 
     <div id="buttons">
       <ion-button

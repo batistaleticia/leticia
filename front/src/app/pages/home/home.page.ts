@@ -64,6 +64,10 @@ export class HomePage implements OnInit {
     this.carregarListagem();
   }
 
+  ionViewDidLeave(){
+    window.location.reload();
+  }
+
   logout() {
     UsuarioService.logout();
     this.navController.navigateBack('/login');

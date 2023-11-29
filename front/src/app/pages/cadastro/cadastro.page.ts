@@ -44,9 +44,9 @@ export class CadastroPage implements OnInit {
           this.formGroup.get('nome')?.setValue(this.usuario.nome);
           this.formGroup.get('email')?.setValue(this.usuario.email);
           this.formGroup.get('senha')?.setValue(this.usuario.senha);
-          this.formGroup
-            .get('acesso')
-            ?.setValue(this.usuario.acesso === 0 ? true : false);
+          // this.formGroup
+          //   .get('acesso')
+          //   ?.setValue(this.usuario.acesso === 0 ? true : false);
         } else {
           this.navController.navigateBack('/home');
         }
@@ -72,12 +72,58 @@ export class CadastroPage implements OnInit {
 
   ngOnInit() {}
 
+  alterar(){
+    this.usuario.nome = this.formGroup.value.nome;
+    this.usuario.email = this.formGroup.value.email;
+    this.usuario.senha = this.formGroup.value.senha;
+    // this.usuario.acesso = 1;
+    // this.usuario.acesso = this.formGroup.value.acesso === false ? 1 : 0;
+
+    this.usuarioService.conferirEmail(this.usuario.email).then((json) => {
+      let usuario = <Usuario>json;
+      console.log(usuario);
+
+      if (usuario === null || usuario.idUsuario === this.usuario.idUsuario) {
+        this.usuarioService
+          .save(this.usuario)
+          .then((json: any) => {
+            let usuario = <Usuario>json;
+            if (usuario) {
+              this.exibirMensagem('Registro alterado com sucesso!!!');
+              if (usuario.idUsuario > 0) {
+                this.navController.navigateBack('/home');
+              } else {
+                this.navController.navigateBack('/home');
+              }
+            } else {
+              this.exibirMensagem('Erro ao alterar o registro!');
+            }
+          })
+          .catch((erro: any) => {
+            this.exibirMensagem('Erro:' + erro['mensage']);
+          });
+      } else {
+        this.exibirMensagem(
+          'Erro ao salvar o registro! O email já possui uma conta no sistema!'
+        );
+      }})
+  }
+
+  botaoSalvar(){
+    if (this.usuario.idUsuario > 0) {
+      this.alterar();
+    } else {
+      this.salvar();
+    }
+  }
+
   salvar() {
     this.mostrarLoader();
     this.usuario.nome = this.formGroup.value.nome;
     this.usuario.email = this.formGroup.value.email;
     this.usuario.senha = this.formGroup.value.senha;
-    this.usuario.acesso = this.formGroup.value.acesso === false ? 1 : 0;
+    this.usuario.acesso = 1;
+    // this.usuario.acesso = this.formGroup.value.acesso === false ? 1 : 0;
 
     this.usuarioService.conferirEmail(this.usuario.email).then((json) => {
       let usuario = <Usuario>json;
@@ -108,6 +154,7 @@ export class CadastroPage implements OnInit {
         );
       }
     });
+
 
     this.fecharLoader();
   }

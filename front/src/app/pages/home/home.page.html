@@ -20,6 +20,11 @@
 
     <ion-popover trigger="click-trigger" [dismissOnSelect]="true"> <!--triggerAction="click" -->
       <ng-template> 
+        <!-- <ion-fab-button [routerLink]="['/cadastro', usuario.idUsuario]">
+          Perfil
+        </ion-fab-button> -->
+        
+        <button class="customButton" style="border-bottom: 1px solid grey;" [routerLink]="['/cadastro', usuario.idUsuario]"><h3>Perfil</h3></button>
         <ion-text id="sideMenuTitle" class="ion-text-center">
           <h3>Categorias</h3>
         </ion-text>
@@ -94,9 +99,6 @@
       </ion-fab-button>
       <ion-fab-button routerLink="/categoria" *ngIf="usuario.acesso == 0">
         Categorias
-      </ion-fab-button>
-      <ion-fab-button [routerLink]="['/cadastro', usuario.idUsuario]">
-        Perfil
       </ion-fab-button>
       <ion-fab-button routerLink="/info-assistenciais"> Ajuda
       </ion-fab-button>

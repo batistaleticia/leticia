@@ -113,19 +113,35 @@ export class CategoriaPage implements OnInit {
     categoria.nome = this.formGroup.value.nome;
 
     this.categoriaService
-      .save(categoria)
+      .get()
       .then((json: any) => {
-        categoria = <Categoria>json;
-        if (categoria) {
-          this.exibirMensagem('Registro salvo com sucesso!!!');
-          this.carregarListagem();
-          this.formGroup.get('nome')?.setValue("")
+        let categoriaList = <Categoria[]> json;
+        let hasAlready = false;
+        categoriaList.forEach(({nome}) => {
+          hasAlready = (nome === categoria.nome ? true : hasAlready)
+          console.log(nome +"/"+categoria.nome+" = "+ hasAlready);
+          
+        });
+
+        if (hasAlready) {
+          this.exibirMensagem('Erro ao salvar! Já existe uma categoria com esse nome');
         } else {
-          this.exibirMensagem('Erro ao salvar o registro!');
+          this.categoriaService
+            .save(categoria)
+            .then((json: any) => {
+              categoria = <Categoria>json;
+              if (categoria) {
+                this.exibirMensagem('Registro salvo com sucesso!!!');
+                this.carregarListagem();
+                this.formGroup.get('nome')?.setValue("")
+              } else {
+                this.exibirMensagem('Erro ao salvar o registro!');
+              }
+            })
+            .catch((erro: any) => {
+              this.exibirMensagem('Erro ao salvar o registro! Erro:' + erro['mensage']);
+            });
         }
       })
-      .catch((erro: any) => {
-        this.exibirMensagem('Erro ao salvar o registro! Erro:' + erro['mensage']);
-      });
   }
 }

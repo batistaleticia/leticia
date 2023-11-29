@@ -2,7 +2,7 @@
 
 Autores: Lucca Gabriel Araújo Moreira, Letícia Batista Reis
 
-Esse é um sistema desenvolvido como parte da disciplina de Projeto Prático, integrante da grade curricular do curso técnico em Desenvolvimento de Sistemas do CEFET-MG Timóteo. Este projeto consiste em um aplicativo desenvolvido em Ionic e Angular, acompanhado por uma API construída em Spring Boot, com integração a um Banco de Dados MySQL. Além disso, uma documentação abrangente está disponível para referência e detalhamento.
+O HELPPY é um aplicativo criado como parte da disciplina de Projeto Prático do curso técnico em Desenvolvimento de Sistemas no CEFET-MG Timóteo. O sistema foi desenvolvido utilizando Ionic e Angular para o aplicativo, enquanto a API foi construída com Spring Boot, com integração a um Banco de Dados MySQL. O projeto é complementado por uma documentação detalhada disponível para referência.
 
 ## Descrição
 
